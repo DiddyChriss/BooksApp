@@ -1,35 +1,29 @@
 from rest_framework.filters import OrderingFilter
-from django_filters.rest_framework import DjangoFilterBackend, FilterSet, BaseCSVFilter, CharFilter, MultipleChoiceFilter
-from rest_framework import status, generics, mixins, viewsets
+from django_filters.rest_framework import DjangoFilterBackend, FilterSet, MultipleChoiceFilter
+from rest_framework import status, mixins, viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .serializers import *
 from .models import *
 
-# class MultiValueCharFilter(BaseCSVFilter, CharFilter):
-#     def filter(self, qs, value):
-#         # value is either a list or an 'empty' value
-#         values = value or []
-#
-#         for value in values:
-#             qs = super(MultiValueCharFilter, self).filter(qs, value)
-#
-#         return qs
-#
-STATUS_CHOICES = (('George Lunt', 'George Lunt'),)#(x.authors for x in BooksModel.objects.all() if x.authors is not None)
+
+solo_auth_list = list((x.authors for x in BooksModel.objects.all() if x.authors is not None))
+AUTHORS_CHOICES = list(((x, x) for x in solo_auth_list))
+
+solo_date_list = list((x.published_date for x in BooksModel.objects.all() if x.published_date is not None))
+DATE_CHOICES = list(((x, x) for x in solo_date_list))
 
 class MultiFilter(FilterSet):
-    authors = MultipleChoiceFilter(lookup_expr='icontains', choices=STATUS_CHOICES) #, conjoined=True, choices=STATUS_CHOICES)
-    published_date = MultipleChoiceFilter(lookup_expr='icontains')
+    authors = MultipleChoiceFilter(lookup_expr='icontains', choices=AUTHORS_CHOICES)
+    published_date = MultipleChoiceFilter(lookup_expr='icontains', conjoined=True, choices=DATE_CHOICES)
 
     class Meta:
         model = BooksModel
         fields = [
-            'authors',#: ['contains',],
-            'published_date',#: ['contains',],
+            'authors',
+            'published_date',
         ]
-
 
 
 class BooksListAPIView(
@@ -41,7 +35,6 @@ class BooksListAPIView(
     serializer_class = BooksSerializer
     permission_classes = (IsAuthenticated,)
     filter_backends = [DjangoFilterBackend, OrderingFilter]
-    # filter_fields = ['authors', 'published_date',]
     ordering_fields = ['published_date', ]
     filterset_class = MultiFilter
     lookup_field = 'book_id'
@@ -51,8 +44,6 @@ class BooksListAPIView(
         queryset = self.filter_queryset(self.get_queryset())
         queryset = queryset.filter(user=request.user)
         page = self.paginate_queryset(queryset)
-
-        print(list(STATUS_CHOICES))
 
         if page is not None:
             serializer = self.get_serializer(page, many=True)

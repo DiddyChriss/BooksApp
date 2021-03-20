@@ -52,7 +52,6 @@ class UserSerializer(serializers.ModelSerializer):
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attr):
         data = super().validate(attr)
-        token = self.get_token(self.user)
         data['id'] = str(self.user.id)
         data['user'] = str(self.user)
         return data
