@@ -39,7 +39,7 @@ Pillow==8.0.1
 pluggy==0.13.1
 psycopg2==2.8.6
 py==1.10.0
-pycairo==2.2
+pycairo== 1.20.0
 pycrypto==2.0.0
 pycups==3.40.0
 pygobject==3.26.1
