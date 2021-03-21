@@ -1,1 +1,0 @@
-    web: gunicorn BooskApp.wsgi.py
