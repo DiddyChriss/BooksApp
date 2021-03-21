@@ -56,7 +56,6 @@ sqlparse==0.4.1
 style==1.1.0
 toml==0.10.2
 tox==3.23.0
-ufw==0.36
 update==0.0.1
 urllib3==1.26.4
 usb-creator==0.3.3
