@@ -58,5 +58,3 @@ toml==0.10.2
 tox==3.23.0
 update==0.0.1
 urllib3==1.26.4
-usb-creator==0.3.3
-virtualenv==20.0.17
