@@ -1,8 +1,8 @@
-FROM python:3.8
+FROM python:3
 
-ENV PYTHONUNBUFFERED 1
-RUN mkdir /code
-WORKDIR /code
-COPY . /code/
-RUN pip install -r requirements.txt
+ENV PYTHONUNBUFFERED=1
+WORKDIR /books
+COPY . /books/
+RUN pip install --user -r requirements.txt
 
+RUN mkdir /books
