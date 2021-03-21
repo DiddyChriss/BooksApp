@@ -1,1 +1,1 @@
-web: gunicorn BooskApp.wsgi
+web: gunicorn BooksApp.wsgi
