@@ -1,1 +1,1 @@
-web: gunicorn BooskApp.wsgi --log-file -
+web: gunicorn BooskApp.wsgi
