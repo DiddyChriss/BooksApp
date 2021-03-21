@@ -10,4 +10,6 @@ psycopg2==2.8.6
 pytz==2021.1
 requests==2.25.1
 urllib3==1.26.4
-virtualenv==20.0.17
+dj-database-url==0.5.0
+
+
