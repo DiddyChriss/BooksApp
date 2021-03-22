@@ -57,3 +57,4 @@ toml==0.10.2
 tox==3.23.0
 update==0.0.1
 urllib3==1.26.4
+whitenoise==5.2.0
