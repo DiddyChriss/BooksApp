@@ -20,7 +20,7 @@
 * Docker
 
 ## Initial Setup
-#### git clone repository "https://github.com/DiddyChriss/GeoApp.git"
+#### git clone repository "https://github.com/DiddyChriss/BooksApp.git"
 #### Use Docker
 #### Ask me for .env file
 #### "python3 manage.py createsuperuser" so you can manage Django Api UI, register as API user
