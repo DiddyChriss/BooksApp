@@ -1,5 +1,5 @@
 from rest_framework.filters import OrderingFilter
-from django_filters.rest_framework import DjangoFilterBackend, FilterSet, MultipleChoiceFilter
+from django_filters.rest_framework import DjangoFilterBackend, FilterSet, MultipleChoiceFilter, ChoiceFilter
 from rest_framework import status, mixins, viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -16,7 +16,7 @@ DATE_CHOICES = list(((x, x) for x in solo_date_list))
 
 class MultiFilter(FilterSet):
     authors = MultipleChoiceFilter(lookup_expr='icontains', choices=AUTHORS_CHOICES)
-    published_date = MultipleChoiceFilter(lookup_expr='icontains', conjoined=True, choices=DATE_CHOICES)
+    published_date = ChoiceFilter(lookup_expr='icontains', choices=DATE_CHOICES)
 
     class Meta:
         model = BooksModel
