@@ -27,12 +27,12 @@ load_dotenv(dotenv_path=env_path)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['books-app-diddy.herokuapp.com', '127.0.0.1']
 
-
 # Application definition
+TEST_ROOT = os.path.join(BASE_DIR, 'test')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -86,10 +86,10 @@ WSGI_APPLICATION = 'BooksApp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd3lqk90ts9v858',
-        'USER': 'swdoqawqbmgoqp',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('HOST'),
+        'HOST': os.getenv('DB_HOST'),
         'Port': 5432,
         'TEST': {
             'ENGINE': 'django.db.backends.sqlite3',

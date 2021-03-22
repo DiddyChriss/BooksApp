@@ -44,7 +44,7 @@
 
 
 ## Live View
-Live view available on (https://.herokuapp.com/) 
+Live view available on (https://books-app-diddy.herokuapp.com/) 
 
 ## Status
 Finish!
