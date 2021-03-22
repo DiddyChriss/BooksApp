@@ -1,1 +1,1 @@
-web: python manage.py collectstatic --no-input; gunicorn BooksApp.wsgi --log-file - --log-level debug
+web: python3 manage.py collectstatic --no-input; gunicorn BooksApp.wsgi --log-file - --log-level debug
